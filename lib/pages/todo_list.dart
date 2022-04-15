@@ -14,6 +14,13 @@ class _TodoListState extends State<TodoList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text(
+          'Todo App with Firebase',
+        ),
+        centerTitle: true,
+        backgroundColor: Colors.black,
+      ),
       body: Consumer<TodoServices>(
         builder: (context, value, child) => ListView.builder(
           itemBuilder: (context, index) => ListTile(
@@ -74,6 +81,7 @@ class _TodoListState extends State<TodoList> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.black,
         onPressed: () {
           TextEditingController titleController = TextEditingController();
           showDialog(
@@ -84,12 +92,14 @@ class _TodoListState extends State<TodoList> {
               ),
               actions: [
                 ElevatedButton(
+                  style: ElevatedButton.styleFrom(primary: Colors.black54),
                   onPressed: () {
                     Navigator.pop(context);
                   },
                   child: const Text('Cancel'),
                 ),
                 ElevatedButton(
+                  style: ElevatedButton.styleFrom(primary: Colors.green),
                   onPressed: () {
                     context.read<TodoServices>().addTodo(
                           Todo(title: titleController.text),
